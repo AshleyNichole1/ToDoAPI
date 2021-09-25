@@ -17,11 +17,11 @@ namespace ToDoAPI.API.Controllers
         ToDoEntities db = new ToDoEntities();
 
         //List<GetToDo>
-        public IHttpActionResult GetTodo()
+        public IHttpActionResult GetTodos()
         {
-            List<ToDoViewModel> Todo = db.ToDoItem.Include("Category").Select(t => new ToDoViewModel()
+            List<ToDoViewModel> Todo = db.ToDoItems.Include("Category").Select(t => new ToDoViewModel()
             {
-                TodoId = t.TodoId,
+                TodoId = t.ToDoId,
                 Action = t.Action,
                 Done = t.Done,
                 Category = new CategoryViewModel
@@ -46,9 +46,9 @@ namespace ToDoAPI.API.Controllers
         //GetTodo
         public IHttpActionResult GetTodo(int id)
         {
-            ToDoViewModel Todo = db.ToDoItem.Include("Category").Where(t => t.TodoId == id).Select(t => new ToDoViewModel()
+            ToDoViewModel Todo = db.ToDoItems.Include("Category").Where(t => t.ToDoId == id).Select(t => new ToDoViewModel()
             {
-                TodoId = t.TodoId,
+                TodoId = t.ToDoId,
                 Action = t.Action,
                 Done = t.Done,
                 Category = new CategoryViewModel
@@ -84,7 +84,7 @@ namespace ToDoAPI.API.Controllers
                 CategoryId = Todo.CategoryId
             };
 
-            db.ToDoItem.Add(newToDo);
+            db.ToDoItems.Add(newToDo);
             db.SaveChanges();
             return Ok(newToDo);
         }//end PostTODO()
@@ -98,11 +98,11 @@ namespace ToDoAPI.API.Controllers
                 return BadRequest("Invalid Data");
             }
 
-            ToDoItem existingToDo = db.ToDoItem.Where(t => t.TodoId == Todo.TodoId).FirstOrDefault();
+            ToDoItem existingToDo = db.ToDoItems.Where(t => t.ToDoId == Todo.TodoId).FirstOrDefault();
 
             if (existingToDo != null)
             {
-                existingToDo.TodoId = Todo.TodoId;
+                existingToDo.ToDoId = Todo.TodoId;
                 existingToDo.Action = Todo.Action;
                 existingToDo.Done = Todo.Done;
                 existingToDo.CategoryId = Todo.CategoryId;
@@ -119,11 +119,11 @@ namespace ToDoAPI.API.Controllers
 
         public IHttpActionResult DeleteTodo(int id)
         {
-            ToDoItem toDo = db.ToDoItem.Where(t => t.TodoId == id).FirstOrDefault();
+            ToDoItem toDo = db.ToDoItems.Where(t => t.ToDoId == id).FirstOrDefault();
 
             if (toDo != null)
             {
-                db.ToDoItem.Remove(toDo);
+                db.ToDoItems.Remove(toDo);
                 db.SaveChanges();
                 return Ok();
             }

@@ -26,7 +26,6 @@ namespace ToDoAPI.DATA.EF
         }
     
         public virtual DbSet<Category> Categories { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
-        public virtual DbSet<ToDoItem> ToDoItem { get; set; }
+        public virtual DbSet<ToDoItem> ToDoItems { get; set; }
     }
 }

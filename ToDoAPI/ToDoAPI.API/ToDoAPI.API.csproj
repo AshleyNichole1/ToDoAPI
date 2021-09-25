@@ -263,7 +263,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ToDoAPI.DATA.EF\ToDoAPI.DATA.EF.csproj">
-      <Project>{84314cab-ad03-4905-8d3a-ecec3104552a}</Project>
+      <Project>{beb1584c-33d8-47e9-8ac2-ecc9598b66a5}</Project>
       <Name>ToDoAPI.DATA.EF</Name>
     </ProjectReference>
   </ItemGroup>

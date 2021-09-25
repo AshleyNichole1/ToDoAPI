@@ -14,7 +14,7 @@ namespace ToDoAPI.DATA.EF
     
     public partial class ToDoItem
     {
-        public int TodoId { get; set; }
+        public int ToDoId { get; set; }
         public string Action { get; set; }
         public bool Done { get; set; }
         public Nullable<int> CategoryId { get; set; }
